@@ -8,3 +8,5 @@ makefile.inc
 *.so
 *.pyc
 *~
+faiss.egg-info/
+faiss/

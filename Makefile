@@ -138,10 +138,12 @@ VectorTransform.o: VectorTransform.cpp VectorTransform.h Index.h utils.h \
 
 
 clean:
+	mv setup.py S
 	rm -f $(LIBNAME).a $(LIBNAME).$(SHAREDEXT)* *.o \
 	   	lua/swigfaiss.so lua/swigfaiss_wrap.cxx \
 		python/_swigfaiss.so python/swigfaiss_wrap.cxx \
 		python/swigfaiss.py _swigfaiss.so swigfaiss.py
+	mv S setup.py
 
 .env_ok:
 ifeq ($(wildcard $(MAKEFILE_INC)),)

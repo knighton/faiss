@@ -33,11 +33,19 @@ class MyInstall(DistutilsInstall):
         os.system('make -j py')
         os.system('mkdir -p faiss')
         os.system('mv *.py *.so faiss/')
+        os.system('cp faiss/faiss.py .')
+        os.system('mv faiss/setup.py .')
+        open('faiss/__init__.py', 'w').write('from .faiss import *\n')
+        text = open('faiss/faiss.py').read()
+        text = text.replace('swigfaiss', '.swigfaiss')
+        open('faiss/faiss.py', 'w').write(text)
         DistutilsInstall.run(self)
 
 
 setup(
     name='faiss',
     version='0.0.1',
-    cmdclass={'install': MyInstall},
+    cmdclass={
+        'install': MyInstall,
+    },
 )
